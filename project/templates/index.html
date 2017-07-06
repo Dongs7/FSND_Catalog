@@ -60,6 +60,8 @@
       </div>
     </div>
   </div>
-  <a href="{{url_for('api_page.get_api')}}">secret</a>
+  {% if current_user.is_authenticated: %}
+  <a href="{{url_for('api_page.get_api')}}">api page</a>
+  {% endif %}
 </div>
 {% endblock %}

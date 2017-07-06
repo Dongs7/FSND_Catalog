@@ -33,12 +33,3 @@ def get_items_api():
     """ The route returns all items of the catalog in JSON format """
     items = get_items_all()
     return jsonify(items=[item.serialize for item in items])
-
-
-@api_page.route('/catalog_items')
-@login_required
-def get_all_api():
-    """ """
-    catalog_items = get_catalog_items()
-    return jsonify(catalog_items=[catalog_item.serialize for catalog_item
-                                  in catalog_items])
