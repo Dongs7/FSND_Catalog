@@ -18,15 +18,15 @@ Build an Item Catalog application
 * Twitter Bootstrap
 
 ## Folder
-[instance]          - contains app config, credential files - ignored
-[project]  
-|________[api]      - contains api related files
-|________[catalog]  - contains catalog related files
-|________[template] - contains html files
-|________[users]    - contains user related files
-|________[db]       - contains model, db files
-|________[static]   - contains static files (css/js/images..) - ignored
-run.py              - Start the application
+[instance]          - contains app config, credential files - ignored  
+[project]    
+|________[api]      - contains api related files  
+|________[catalog]  - contains catalog related files  
+|________[template] - contains html files  
+|________[users]    - contains user related files  
+|________[db]       - contains model, db files  
+|________[static]   - contains static files (css/js/images..) - ignored  
+run.py              - Start the application  
 
 ## How to run this program
 Run vagrant
