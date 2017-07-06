@@ -20,12 +20,12 @@ Build an Item Catalog application
 ## Folder
 [instance]          - contains app config, credential files - ignored  
 [project]    
-|________[api]      - contains api related files  
-|________[catalog]  - contains catalog related files  
-|________[template] - contains html files  
-|________[users]    - contains user related files  
-|________[db]       - contains model, db files  
-|________[static]   - contains static files (css/js/images..) - ignored  
+|--------[api]      - contains api related files  
+|--------[catalog]  - contains catalog related files  
+|--------[template] - contains html files  
+|--------[users]    - contains user related files  
+|--------[db]       - contains model, db files  
+|--------[static]   - contains static files (css/js/images..) - ignored  
 run.py              - Start the application  
 
 ## How to run this program
