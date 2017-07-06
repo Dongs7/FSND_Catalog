@@ -1,0 +1,6 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <h3 class="center">USer Page {{name}}</h3>
+  <a href="{{url_for('user_page.user_signup')}}">signup page</a>
+</div>
+{% endblock %}

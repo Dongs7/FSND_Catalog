@@ -1,0 +1,23 @@
+<div id="deleteHelper" class="modal fade left" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">DELETE ITEM</h4>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete this item?</p>
+        <p> {{ item.name }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+        <form action="{{url_for('catalog_page.delete_item', catalog_name = c_name, item_name = item.name)}}" method='POST'>
+          <button type="submit" class="btn btn-danger">DELETE</button>
+        </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

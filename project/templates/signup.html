@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block content %}
+<div class="container">
+  <h3 class="lead center">User Sign Up</h3>
+  <a href="{{url_for('user_page.user_signup')}}">signup page</a> {% with error = get_flashed_messages(category_filter=["UE"]) %} {% if error %}
+  <p class="lead bg bg-danger center">{{ error[0] }}</p>
+  {% endif %} {% endwith %}
+  <form method='post' action="{{url_for('user_page.user_signup')}}" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <dl>
+      {{ wtf.form_field(form.name, class='form-control', placeholder='Name here') }} {{ wtf.form_field(form.email, class='form-control', placeholder='Email here', type='email') }} {{ wtf.form_field(form.user_image) }} {{ wtf.form_field(form.password, class='form-control',
+      type='password') }} {{ wtf.form_field(form.confirm_pass, class='form-control', type='password') }}
+    </dl>
+    <p><input type='submit' value='Register' class="btn btn-info">
+  </form>
+</div>
+{% endblock %}

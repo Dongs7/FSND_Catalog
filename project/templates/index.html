@@ -1,0 +1,65 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+
+  {% with alert = get_flashed_messages() %} {% if alert %}
+  <p class="lead bg bg-danger center">{{ alert[0] }}</p>
+  {% endif %} {% endwith %}
+  <div class="row">
+    <h3 class="center catalog_header">Sports Equipment Catalog</h3>
+  </div>
+  <div class="row">
+    <hr>
+  </div>
+  <div class="catalog_wrapper">
+    <div class="col-xs-12 col-md-6 catalog_left">
+      {% for catalog in counts : %}
+      <a href="{{url_for('catalog_page.get_catalog_items', catalog_name = catalog.name)}}">
+        <div class="col-xs-6 col-md-6 catalog_list '{{catalog.name}}'">
+          <div class="img_wrapper">
+            <span class="badge float_right">{{catalog.counter}}</span>
+            <img class="" src={{catalog.image}} alt="{{catalog.name}}">
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="col-xs-12 col-md-6 catalog_right ">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+          <h4 class="center">Recently Added Items</h4></div>
+        <div class="panel-body center">
+          {% if current_user.is_authenticated: %}
+          <a href="{{url_for('catalog_page.add_item')}}"><button class="btn btn-default">ADD NEW ITEM</button></a> {% endif %}
+        </div>
+        <!-- Table -->
+        <table class="table table-striped">
+          <thead>
+            <tr class="center">
+              <td>
+                <h5>Item Name</h5></td>
+              <td>
+                <h5>Item Category</h5></td>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in item_lists:%}
+            <tr class="center">
+              {% with newitem = get_flashed_messages(category_filter=[item.name]) %} {% if newitem: %}
+              <td class={{ newitem[0] }}><i>{{ item.name }}</i></td>
+              <td class={{ newitem[0] }}><i>{{ item.catalog.name }}</i></td>
+              {% else: %}
+              <td><i>{{ item.name }}</i></td>
+              <td><i>{{ item.catalog.name }}</i></td>
+              {% endif %} {% endwith %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <a href="{{url_for('api_page.get_api')}}">secret</a>
+</div>
+{% endblock %}

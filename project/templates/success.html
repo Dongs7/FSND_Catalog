@@ -1,0 +1,2 @@
+<h3>Add success!</h3> {% if current_user.is_authenticated %} Hi {{ current_user.username }}! {% endif %}
+<a href="{{url_for('user_page.user_logout')}}">logout</a>

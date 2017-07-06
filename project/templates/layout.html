@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/master.css')}}">
+  <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <title>FSND Item Catalog</title>
+</head>
+
+<body>
+  <header class="navbar navbar-default">
+    <nav class="container">
+      <div class="row">
+        <div class="navbar-brand"><a href="{{url_for('catalog_page.get_catalog')}}">Catalog App</a></div>
+        {% if current_user.is_authenticated %}
+        <div class="login">
+          <i class="glyphicon glyphicon-user username"></i>
+          <span class="login_info">Logged In as
+            <a href="{{url_for('user_page.user_profile', user_id = current_user.id)}}">{{ current_user.username }}</a>
+          </span>
+          <a class="login_btn" href="{{url_for('user_page.user_logout')}}"><button class="btn btn-info">LOGOUT</button></a>
+        </div>
+
+        {% else %}
+        <a href="{{url_for('user_page.user_login')}}"><button class="login btn btn-info">LOGIN</button></a> {% endif %}
+      </div>
+
+    </nav>
+  </header>
+  {% block content %}{% endblock %}
+</body>
+
+</html>

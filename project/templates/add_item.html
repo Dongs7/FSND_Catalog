@@ -1,0 +1,33 @@
+{% extends "layout.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block content %}
+<div class="container">
+  <div class="row">
+    <ol class="breadcrumb">
+      <li><a href="/">Catalog</a></li>
+      <li class="actice">Add new item</li>
+    </ol>
+  </div>
+
+  <div class="row">
+    <h2 class="center">ADD NEW ITEM</h2>
+  </div>
+  <div class="row">
+    <hr class="divider">
+  </div>
+  {% with alert = get_flashed_messages() %} {% if alert %}
+  <p class="lead bg bg-danger center">{{ alert[0] }}</p>
+  {% endif %} {% endwith %}
+
+
+  <form method='post' action="{{url_for('catalog_page.add_item')}}" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <dl>
+      {{ wtf.form_field(form.category, class='form-control') }} {{ wtf.form_field(form.name, class='form-control', placeholder='Type item name here') }} {{ wtf.form_field(form.item_image) }} {{ wtf.form_field(form.desc, id='wwwww', class='form-control noresize',
+      rows=7, cols=50) }}
+    </dl>
+    <input type='submit' value='Add!' class="btn btn-info">
+    <a href="{{url_for('catalog_page.get_catalog')}}" class="cancel"><button class="btn btn-danger" type="button">cancel</button></a>
+  </form>
+
+
+</div>
+{% endblock %}

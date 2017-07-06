@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <div class="row">
+    <ol class="breadcrumb">
+      <li><a href="/">Catalog</a></li>
+      <li class="active"><a href="{{url_for('catalog_page.get_catalog_items', catalog_name = c_name)}}">{{c_name}}</a></li>
+    </ol>
+  </div>
+
+  <h2 class="center">{{c_name}}</h2>
+  <h4 class="center">Total {{total}} items</h4>
+
+  <div class="row">
+    {% with alert = get_flashed_messages() %} {% if alert %}
+    <p class="lead bg bg-danger center">{{ alert[0] }}</p>
+    {% endif %} {% endwith %}
+  </div>
+  <div class="row">
+    <hr class="divider">
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr class="lead">
+        <td class="col-md-2">IMAGE</td>
+        <td class="col-md-3">NAME</td>
+        <td class="col-md-5">DESCRIPTION</td>
+        {% if current_user.username: %}
+        <td class="col-md-2 right">TOOL</td>
+        {% endif %}
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for item in items:%}
+      <tr>
+        <td class="col-md-2 media"> <img class="media-object item_image " src="{{item.image}}" alt="{{item.name}}"></td>
+        <td class="col-md-3"> {{item.name}} </td>
+        <td class="col-md-5"> {{item.description}} </td>
+
+        {% if current_user.username %}
+        <td class="col-md-2 right">
+          <!-- if the logged in user is the owner of the item
+               activate edit and remove buttons -->
+          {% if item.user_id == current_user.id %}
+          <a href="{{url_for('catalog_page.edit_item', catalog_name = c_name, item_name = item.name)}}"><button class="tools glyphicon glyphicon-pencil btn btn-primary active"></button></a>
+          <button class="tools glyphicon glyphicon-trash btn btn-primary active" data-toggle="modal" data-target="#deleteHelper"></button> {% include "delete_modal.html" %} {% else: %}
+          <button class="tools glyphicon glyphicon-pencil btn btn-danger disabled"></button>
+          <button class="tools glyphicon glyphicon-trash btn btn-danger disabled"></button> {% endif %}
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

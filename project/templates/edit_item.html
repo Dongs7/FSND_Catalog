@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block content %}
+<div class="container">
+  <div class="row">
+    <ol class="breadcrumb">
+      <li><a href="/">Catalog</a></li>
+      <li id="catalog_name"><a href="{{url_for('catalog_page.get_catalog_items', catalog_name = c_name)}}">{{c_name}}</a></li>
+      <li class="active">{{ i_name }} - Edit</li>
+    </ol>
+  </div>
+
+  <div class="row">
+    <h2 class="center">EDIT ITEM</h2>
+  </div>
+
+  <div class="row">
+    <h4 class="center"> {{ i_name }} </h4>
+  </div>
+
+  <form method='post' action="{{url_for('catalog_page.edit_item', catalog_name = c_name, item_name = i_name)}}" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <dl>
+      <!-- Category Selector form group starts -->
+      <div class="form-group">
+        <label for="sel1">Category:</label>
+        <select class="form-control" id="sel1" name="category_selector">
+              {% for cate in category_list: %}
+                  <option value="{{ cate.id }}" {% if cate.name == c_name %} selected="selected"{% endif %}>{{ cate.name }}</option>
+              {% endfor %}
+            </select>
+      </div>
+      <!-- Category Selector form group ends -->
+      {{ wtf.form_field(form.name, class='form-control') }} {{ wtf.form_field(form.item_image) }} {{ wtf.form_field(form.description, id='wwwww', class='form-control noresize', rows=7, cols=50) }}
+
+    </dl>
+    <input type='submit' value='EDIT!' class="btn btn-info">
+    <a href="{{url_for('catalog_page.get_catalog_items', catalog_name = c_name)}}" class="cancel"><button class="btn btn-danger" type="button">cancel</button></a>
+  </form>
+
+</div>
+{% endblock %}
