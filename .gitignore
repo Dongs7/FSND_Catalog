@@ -1,9 +1,9 @@
 .DS_Store
 *.pyc
-*.db
+# *.db
 Vagrantfile
 *.sh
 *.json
 
-instance/
-project/static
+# instance/
+# project/static
